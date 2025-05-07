@@ -15,8 +15,10 @@ annotation PBI_QueryOrder = ["DatabaseQuery"]
 
 annotation PBI_ProTooling = ["WebModelingEdit"]
 
+annotation __TEdtr = 1
+
 ref table customers
-ref table sales_orders
+ref table sales_orders_03
 ref table regions
 ref table date
 ref table products

@@ -1,0 +1,96 @@
+table Regions
+	lineageTag: a45f6d79-ba7a-4c8d-b3c4-d086288aeeec
+
+	column Index
+		dataType: string
+		lineageTag: 687a6f6d-6915-49bf-b6ab-1effb51c99bf
+		summarizeBy: none
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: f958ab74-a98b-40ff-8bf5-6c6b9e8ac3a1
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Suburb
+		dataType: string
+		lineageTag: e2fc0923-92df-4f03-8f2e-4fe5bca1fabe
+		summarizeBy: none
+		sourceColumn: Suburb
+
+		annotation SummarizationSetBy = Automatic
+
+	column postcode
+		dataType: string
+		lineageTag: 5e062aba-4d51-43e4-9395-eaa2b13e81fc
+		summarizeBy: none
+		sourceColumn: postcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Longitude
+		dataType: double
+		lineageTag: a102f059-0710-4f89-8bd9-9372d9215638
+		dataCategory: Longitude
+		summarizeBy: sum
+		sourceColumn: Longitude
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation CategorySetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Latitude
+		dataType: double
+		lineageTag: 1a8f93d8-c2f4-4d24-8695-9fef69c33617
+		dataCategory: Latitude
+		summarizeBy: sum
+		sourceColumn: Latitude
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation CategorySetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Full Address'
+		dataType: string
+		lineageTag: bbef41a7-f1d6-4e9d-8375-347e32b7e805
+		summarizeBy: none
+		sourceColumn: Full Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column Island =
+			
+			SWITCH( TRUE(),
+				Regions[Latitude] > -41.24, "North",
+				Regions[Latitude] <= -41.24, "South",
+				"Unknown")
+		lineageTag: 5bebd503-7786-4bab-9a8d-ba6016307b7b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Regions_Table-3c364a51-db3e-436e-9d90-216921a45e41 = m
+		mode: import
+		queryGroup: 'Data Model'
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\HAMme\OneDrive - adesso Group\WM Group\00_Initialization\Material\Power BI Workshop Data.xlsx"), null, true),
+				    Regions_Table_Table = Source{[Item="Regions_Table",Kind="Table"]}[Data]
+				in
+				    Regions_Table_Table
+
+	annotation PBI_ResultType = Table
+

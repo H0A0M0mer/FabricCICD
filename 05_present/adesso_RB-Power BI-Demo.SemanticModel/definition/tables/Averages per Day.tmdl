@@ -1,0 +1,28 @@
+table 'Averages per Day'
+	lineageTag: 574cd1f1-47a0-4f73-aec3-3e233b90e766
+
+	measure 'Avg Sales per Customer' =
+			
+			AVERAGEX (
+				VALUES ( Customers[Customer Names] ),
+					[Total Sales]
+			)
+			//average sales per customer. Works well when placed against dates
+		formatString: \$#,0.00;-\$#,0.00;\$#,0.00
+		lineageTag: 817f2272-c444-4466-ba28-91364785b23c
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-NZ"}
+
+	partition 'Averages per Day-68f7ec41-70c6-4e0e-bad0-a42ba8a7ea36' = m
+		mode: import
+		queryGroup: 'Measure Groups'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", Int64.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

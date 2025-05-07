@@ -1,0 +1,74 @@
+table 'Time Comparison'
+	lineageTag: a4792a63-d0f0-4ccf-b41c-223ab197e465
+
+	measure 'Sales LY' = ```
+			
+			CALCULATE( 
+				[Total Sales] , 
+					SAMEPERIODLASTYEAR( Dates[Date] ))
+			```
+		formatString: \$#,0.00;-\$#,0.00;\$#,0.00
+		lineageTag: 44cd2f8d-66d4-4d2e-8514-548c5e13b2cf
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-NZ"}
+
+	measure 'Profits LY' = ```
+			
+			CALCULATE( 
+				[Total Profits] , 
+					SAMEPERIODLASTYEAR( Dates[Date] ))
+			```
+		formatString: \$#,0.00;-\$#,0.00;\$#,0.00
+		lineageTag: e98da0dd-a747-4d12-a594-711d534c04d7
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-NZ"}
+
+	measure 'Sales Year to Date' = ```
+			
+			CALCULATE( 
+				[Total Sales] , 
+					DATESYTD( Dates[Date] ) )
+			```
+		formatString: \$#,0.00;-\$#,0.00;\$#,0.00
+		lineageTag: faf27718-cbd8-49b1-b21c-e07d4f0959b3
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-NZ"}
+
+	measure 'Sales Year to Date LY' = ```
+			
+			CALCULATE( 
+				[Sales Year to Date], 
+					SAMEPERIODLASTYEAR( Dates[Date] ))
+			```
+		formatString: \$#,0.00;-\$#,0.00;\$#,0.00
+		lineageTag: e8391e3d-5478-4173-8e0f-d7f7ed7991d2
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-NZ"}
+
+	measure '% Change to LY' =
+			
+			DIVIDE( [Sales LY] , [Total Sales] , 0 ) - 1
+			//could use these in a ranking scenario. See which attribute are performing best % wise
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: f6bc2a11-de18-4339-a66c-b7b9d45d11fe
+
+	measure '% Change to LYTD' =
+			
+			DIVIDE( [Sales Year to Date LY] , [Sales Year to Date] , 0 ) - 1
+			//Great for use to identify growth accounts, products, regions etc
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: feb0189b-54dd-4041-9ed3-117365c3547b
+
+	partition 'Time Comparison-0e80d7a7-45cd-4bee-b8b7-f87f3c3d4d8a' = m
+		mode: import
+		queryGroup: 'Measure Groups'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", Int64.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

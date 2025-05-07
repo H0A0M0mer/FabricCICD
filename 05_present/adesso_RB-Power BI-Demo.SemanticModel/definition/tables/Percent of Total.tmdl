@@ -1,0 +1,40 @@
+table 'Percent of Total'
+	lineageTag: fbac304c-d527-4342-ae0a-d7dc609261af
+
+	measure '% of Sales - Products' = ```
+			
+			DIVIDE ( [Total Sales] , 
+				CALCULATE ( [Total Sales] , 
+					ALL ( Products )
+				),
+			0)
+			
+			```
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 23bff8aa-2aa5-43ce-9787-340882f6bada
+
+	measure '% of Sales - Regions' = ```
+			
+			DIVIDE ( [Total Sales] , 
+				CALCULATE ( [Total Sales] , 
+					ALL ( Regions )
+				),
+			0)
+			
+			```
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 8e91371d-ae35-4fa7-92e2-f14d8190cd4d
+
+	partition 'Percent of Total-3d92bb2f-72e1-478b-a2a1-63dcaeb8fd96' = m
+		mode: import
+		queryGroup: 'Measure Groups'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", Int64.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

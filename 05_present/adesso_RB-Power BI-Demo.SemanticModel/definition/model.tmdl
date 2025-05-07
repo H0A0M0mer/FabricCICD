@@ -1,0 +1,47 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-NZ
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup 'Query Functions'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Data Model'
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup 'Measure Groups'
+
+	annotation PBI_QueryGroupOrder = 2
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.142.1277.0 (25.04)+014fde450f93691fc9537f0758d73d1c5df153ef
+
+annotation PBI_QueryOrder = ["Dates Query","Products","Regions","Sales","Dates","Key Measures","Cumulative Patterns","Averages per Day","Ranking","Percent of Total","Time Comparison","Customer Measures","Customers"]
+
+ref table DateTableTemplate_ecca55fd-816f-45b5-a36d-997291bc9c9a
+ref table Products
+ref table Regions
+ref table Sales
+ref table Dates
+ref table LocalDateTable_514d4afe-29cf-472f-bb01-296a9e8efa2e
+ref table LocalDateTable_5ccc32bb-06e8-4ec2-9083-69d4be5ffcf0
+ref table 'Key Measures'
+ref table 'Cumulative Patterns'
+ref table 'Averages per Day'
+ref table Ranking
+ref table 'Percent of Total'
+ref table 'Time Comparison'
+ref table 'Customer Measures'
+ref table Customers
+
+ref role North
+ref role South
+
+ref cultureInfo en-US
+

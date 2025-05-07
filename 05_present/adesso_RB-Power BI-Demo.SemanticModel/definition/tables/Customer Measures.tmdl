@@ -1,0 +1,54 @@
+table 'Customer Measures'
+	lineageTag: 6a64f57b-2cce-4829-a156-7c92f4437005
+
+	measure 'Lifetime Sales' = ```
+			
+			CALCULATE(
+				[Total Sales] , 
+					ALLEXCEPT( Sales , Customers[Customer Names] ))
+			//Only ignores CustomerName context change
+			```
+		formatString: \$#,0.00;-\$#,0.00;\$#,0.00
+		lineageTag: 29c0bb23-1894-4ea1-8808-fecd4798451f
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-NZ"}
+
+	measure 'Lifetime Profits' = ```
+			
+			CALCULATE(
+				[Total Profits] , 
+					ALLEXCEPT( Sales , Customers[Customer Names]))
+			//Only ignores any selection on customer. If there is a selection on products that that does not filter anything correctly
+			```
+		lineageTag: 9d5e86b5-1cba-4473-a192-8139bc634612
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Lifetime Profit Margin' =
+			
+			DIVIDE( [Lifetime Profits] , [Lifetime Sales] , 0 )
+		formatString: 0\ %;-0\ %;0\ %
+		lineageTag: 8f0f04ca-6551-4b06-a9ed-15abccef137e
+
+	measure 'Lifetime Transactions' = ```
+			
+			CALCULATE(
+				[Total Transactions] , 
+					ALLEXCEPT( Sales , Customers[Customer Names] ))
+			```
+		formatString: #,0
+		lineageTag: c65aecd8-2ae0-4f5e-97ac-c4c4ec4629f3
+
+	partition 'Customer Measures-653441c6-a9bc-4ccd-a116-6441dfe25e99' = m
+		mode: import
+		queryGroup: 'Measure Groups'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", Int64.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

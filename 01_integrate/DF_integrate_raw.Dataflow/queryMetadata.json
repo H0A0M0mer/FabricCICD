@@ -25,9 +25,9 @@
       "queryName": "regions",
       "loadEnabled": false
     },
-    "sales_orders_02": {
+    "sales_orders_05": {
       "queryId": "1f3a985b-b5a1-47b4-b51e-3569ced2d46a",
-      "queryName": "sales_orders_02",
+      "queryName": "sales_orders_05",
       "loadEnabled": false
     },
     "DefaultDestination": {

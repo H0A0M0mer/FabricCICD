@@ -1,21 +1,21 @@
 relationship 99bd8415-055e-fdfb-bf1f-b70a76db7cb2
-	fromColumn: sales_orders_03.customer_name_index
+	fromColumn: sales_orders_15.customer_name_index
 	toColumn: customers.customer_index
 
 relationship 1fd194d6-341d-6d33-df67-a4f59cfa6353
-	fromColumn: sales_orders_03.delivery_region_index
+	fromColumn: sales_orders_15.delivery_region_index
 	toColumn: regions.index
 
 relationship bf5ffbc8-0407-76b0-641e-ed048025c5c4
-	fromColumn: sales_orders_03.product_description_index
+	fromColumn: sales_orders_15.product_description_index
 	toColumn: products.product_index
 
 relationship 2e69dace-f23e-f30a-8283-2872122209b4
-	fromColumn: sales_orders_03.order_date
+	fromColumn: sales_orders_15.order_date
 	toColumn: date.date
 
 relationship c77348bd-f7d0-1c60-c87e-f552a00ef138
 	isActive: false
-	fromColumn: sales_orders_03.ship_date
+	fromColumn: sales_orders_15.ship_date
 	toColumn: date.date
 

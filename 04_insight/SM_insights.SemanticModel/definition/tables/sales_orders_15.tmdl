@@ -1,4 +1,4 @@
-table sales_orders_03
+table sales_orders_15
 	lineageTag: 51668b1f-9523-4717-8bc7-7866c283b02f
 	sourceLineageTag: [dbo].[sales_orders]
 
@@ -136,7 +136,7 @@ table sales_orders_03
 
 		annotation SummarizationSetBy = Automatic
 
-	partition sales_orders_03 = entity
+	partition sales_orders_15 = entity
 		mode: directLake
 		source
 			entityName: sales_orders

@@ -1,0 +1,7 @@
+role North
+	modelPermission: read
+
+	tablePermission Regions = [Island] = "North"
+
+	annotation PBI_Id = 13b8e0eed22542cd81b88bcc6cc9269b
+

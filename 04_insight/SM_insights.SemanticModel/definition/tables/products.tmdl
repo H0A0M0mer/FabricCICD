@@ -1,0 +1,34 @@
+table products
+	lineageTag: c2bf9b19-98fb-486d-9306-2aea6c7d1f1f
+	sourceLineageTag: [dbo].[products]
+
+	column product_index
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 47867254-a427-474f-9654-a507f23fd914
+		sourceLineageTag: product_index
+		summarizeBy: none
+		sourceColumn: product_index
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: edd3682a-1c65-4a8a-9583-6be65e19b129
+		sourceLineageTag: product_name
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition products = entity
+		mode: directLake
+		source
+			entityName: products
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

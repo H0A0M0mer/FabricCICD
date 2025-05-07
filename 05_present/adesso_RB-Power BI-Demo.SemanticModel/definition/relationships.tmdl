@@ -1,0 +1,26 @@
+relationship c560abd2-87cf-47b8-8828-c05cbe398709
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Dates.Date
+	toColumn: LocalDateTable_514d4afe-29cf-472f-bb01-296a9e8efa2e.Date
+
+relationship 56376413-9b01-404a-b801-01159bffc6a6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Dates.WeekEnding
+	toColumn: LocalDateTable_5ccc32bb-06e8-4ec2-9083-69d4be5ffcf0.Date
+
+relationship b6af053d-1615-4c5e-8799-38ece7e26f0b
+	fromColumn: Sales.OrderDate
+	toColumn: Dates.Date
+
+relationship 2698dcd9-b4a7-48cd-a9cd-8f395ff46860
+	fromColumn: Sales.'Delivery Region Index'
+	toColumn: Regions.Index
+
+relationship 4441fb28-28b9-4a7b-bd0e-16a601847a33
+	fromColumn: Sales.'Product Description Index'
+	toColumn: Products.Index
+
+relationship c3cb079b-931e-4595-a04e-ddde571971ec
+	fromColumn: Sales.'Customer Name Index'
+	toColumn: Customers.'Customer Index'
+

@@ -1,0 +1,47 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "DF_engineer_transform",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "customers": {
+      "queryId": "837ed189-94b3-40d4-89df-c2b2a0d39157",
+      "queryName": "customers",
+      "loadEnabled": false
+    },
+    "date": {
+      "queryId": "310fcaa4-b5a5-4fbc-ad77-23515ae00629",
+      "queryName": "date",
+      "loadEnabled": false
+    },
+    "products": {
+      "queryId": "7c64262f-d188-41d5-9320-b4e4828b3188",
+      "queryName": "products",
+      "loadEnabled": false
+    },
+    "regions": {
+      "queryId": "b69a7f27-4bc4-44b1-a12b-9aa4a646e917",
+      "queryName": "regions",
+      "loadEnabled": false
+    },
+    "sales_orders": {
+      "queryId": "93b4723e-b4e0-42e6-bce8-4c971097e8fb",
+      "queryName": "sales_orders",
+      "loadEnabled": false
+    },
+    "DefaultDestination": {
+      "queryId": "07a25518-a9e8-491d-acba-cead4cfdf67a",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"20b2aff4-3d90-4c8a-936a-1171b8a0fa3a\",\"DatasourceId\":\"b25a15d6-1b48-41ff-809e-948a75b68435\"}"
+    }
+  ]
+}

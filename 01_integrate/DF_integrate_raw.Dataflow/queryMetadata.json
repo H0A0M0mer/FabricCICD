@@ -1,0 +1,52 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "DF_integrate",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "customers": {
+      "queryId": "0efc2ec1-1775-4c5d-8eb5-fdd3d63089ec",
+      "queryName": "customers",
+      "loadEnabled": false
+    },
+    "date": {
+      "queryId": "e557f26b-2229-4ab8-9608-f21c67251580",
+      "queryName": "date",
+      "loadEnabled": false
+    },
+    "products": {
+      "queryId": "690c1b0b-db0e-43a2-9dcf-1a5cb2418eab",
+      "queryName": "products",
+      "loadEnabled": false
+    },
+    "regions": {
+      "queryId": "0e59b66a-0ddb-4ca9-8342-9edcba8a3bb9",
+      "queryName": "regions",
+      "loadEnabled": false
+    },
+    "sales_orders_01": {
+      "queryId": "1f3a985b-b5a1-47b4-b51e-3569ced2d46a",
+      "queryName": "sales_orders_01",
+      "loadEnabled": false
+    },
+    "DefaultDestination": {
+      "queryId": "110dbbc2-c0d3-4233-8039-6990538fc58c",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "https://hammeradlsg2.dfs.core.windows.net/",
+      "kind": "AzureDataLakeStorage",
+      "connectionId": "{\"ClusterId\":\"20b2aff4-3d90-4c8a-936a-1171b8a0fa3a\",\"DatasourceId\":\"9ca9db6d-37d8-4070-abf5-63ffc089fbb7\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"20b2aff4-3d90-4c8a-936a-1171b8a0fa3a\",\"DatasourceId\":\"b25a15d6-1b48-41ff-809e-948a75b68435\"}"
+    }
+  ]
+}

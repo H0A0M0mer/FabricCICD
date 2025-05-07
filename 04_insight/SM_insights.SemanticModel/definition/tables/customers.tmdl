@@ -1,0 +1,34 @@
+table customers
+	lineageTag: 7afe6b00-00d8-42a3-8f85-055535687e22
+	sourceLineageTag: [dbo].[customers]
+
+	column customer_index
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 51692598-478c-4b10-8655-6c258716aff0
+		sourceLineageTag: customer_index
+		summarizeBy: none
+		sourceColumn: customer_index
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_names
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: d57ae2a6-79cf-4612-9164-e00664801f72
+		sourceLineageTag: customer_names
+		summarizeBy: none
+		sourceColumn: customer_names
+
+		annotation SummarizationSetBy = Automatic
+
+	partition customers = entity
+		mode: directLake
+		source
+			entityName: customers
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

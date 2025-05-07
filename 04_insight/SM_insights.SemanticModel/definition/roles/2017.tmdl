@@ -1,0 +1,7 @@
+role 2017
+	modelPermission: read
+
+	tablePermission date = [year] == 2017
+
+	annotation PBI_Id = f21eaf80502f4f9592ee4ff415fa060e
+

@@ -1,0 +1,111 @@
+table 'Cumulative Patterns'
+	lineageTag: 52cd2eb4-e227-41bd-b31c-efb9a7892b42
+
+	measure 'Cumulative Sales' = ```
+			
+			CALCULATE( 
+				[Total Sales] , 
+				FILTER(
+					ALL( Dates[Date] ),
+					Dates[Date] <= MAX( Dates[Date])
+				)
+			)
+			```
+		lineageTag: 15c4e170-b5be-4ab0-9044-9235f5d646f3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Moving Averages' = ```
+			
+			AVERAGEX( 
+				DATESINPERIOD( 
+					Dates[Date] , 
+					LASTDATE( Dates[Date] ),
+					-7,
+					DAY),
+				[Total Sales]
+			)
+			//creates a table of the current day back 7 days, and then with averagex dax iterates through all those dates and the averages them, giving us the average of the prior 7 days in this example 
+			//this doesn't take into acconut days with no data, like weekends, or days with no sales
+			```
+		lineageTag: c882e6e6-a365-4a0d-9bd0-66e38ae79f16
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Moving Average (2)' = ```
+			
+			AVERAGEX(
+				FILTER(
+					ALL( Dates[Date] ),
+					Dates[Date] > ( MAX( Dates[Date] ) - 7 ) 
+						&& Dates[Date] <= MAX( Dates[Date] )
+				),
+				[Total Sales]
+			)
+					
+			```
+		lineageTag: a00234be-e9fc-47e6-8bba-6117a2cd50f4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Moving Average (No Zero)' =
+			
+			CALCULATE (
+				IF (
+					COUNT( Dates[Date] ) >= 7,
+					[Total Sales] / CALCULATE( COUNT ( Dates[Date] ) , Sales )
+				),
+				FILTER (
+					ALL ( Dates[Date] ),
+					Dates[Date] > (MAX ( Dates[Date] ) - 7 )
+						&& Dates[Date] <= MAX ( Dates[Date] )
+				)
+			)
+			//for use when there are dates that have no sales or weekends etc
+		lineageTag: fb1ddbad-9f07-426b-9b27-b86f28b748d5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cumulative Sales (Selected)' = ```
+			
+			CALCULATE( 
+				[Total Sales] , 
+				FILTER(
+					ALLSELECTED( Dates),
+					Dates[Date] <= MAX( Dates[Date])
+				)
+			)
+			//use ALLSELECTED to only bring in dates that you have actually selected
+			```
+		lineageTag: ba78fd23-45e5-416d-99eb-22951a3f1e6d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cumulative Sales LY' = ```
+			
+			CALCULATE( 
+				[Sales LY] , 
+				FILTER(
+					ALLSELECTED( Dates ),
+					Dates[Date] <= MAX( Dates[Date])
+				)
+			)
+			//this doesn't seem to be printing a correct number at all
+			```
+		lineageTag: 6ca7c75a-4f08-477b-98aa-eda5f3a2b024
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Cumulative Patterns-4e482c20-f847-4ef3-bb92-06b46bce10db' = m
+		mode: import
+		queryGroup: 'Measure Groups'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", Int64.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

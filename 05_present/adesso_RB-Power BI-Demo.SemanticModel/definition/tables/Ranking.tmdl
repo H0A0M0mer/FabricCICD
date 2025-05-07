@@ -1,0 +1,151 @@
+table Ranking
+	lineageTag: 6939aa03-ad16-44a6-9944-b9984dcfcb32
+
+	measure 'Product Sales Rank' = ```
+			
+			IF ( HASONEVALUE( Products[Product Name] ),
+			RANKX ( 
+				ALL ( Products ) , 
+					[Total Sales] , ,
+						DESC
+			), 
+			BLANK())
+			//trying to rank products..this isn't correct yet
+			//only works when products is the context
+			```
+		formatString: 0
+		lineageTag: b176a35e-0c59-4f12-b524-bb96ad2d61b6
+
+	measure 'Country Sales Rank' = ```
+			
+			IF ( HASONEVALUE( Regions[City]),
+			RANKX ( 
+				ALL ( Regions[City]) , 
+					[Total Sales] , ,
+						DESC
+			), 
+			BLANK())
+			//Ranks when Country is the current filter context
+			```
+		formatString: 0
+		lineageTag: 5e9ce3ac-8fd3-401d-9e92-4db97133903a
+
+	measure 'Regional Sales Rank' = ```
+			
+			IF ( HASONEVALUE( Regions[City] ),
+			RANKX ( 
+				ALL ( Regions ) , 
+					[Total Sales] , ,
+						DESC
+			), 
+			BLANK())
+			//Ranks when Country is the current filter context
+			```
+		formatString: 0
+		lineageTag: be558c12-9492-419d-b127-135f0ebc6b21
+
+	measure 'City within Country Sales Rank' = ```
+			
+			IF ( HASONEVALUE( Regions[City]),
+			RANKX ( 
+				ALL ( Regions[City] ) , 
+					[Total Sales] , ,
+						DESC
+			), 
+			BLANK())
+			//Ranks when Country is the current filter context
+			```
+		formatString: 0
+		lineageTag: a2e7281c-8907-4366-bab3-adeccc536a3a
+
+	measure 'Regional Sales Rank (Selected)' = ```
+			
+			IF ( HASONEVALUE( Regions[City] ),
+			RANKX ( 
+				ALLSELECTED( Regions ) , 
+					[Total Sales] , ,
+						DESC
+			), 
+			BLANK())
+			//Ranks when Country is the current filter context
+			//Uses ALLSELECTED to rank those that are selected. This is great for when a user may want to view rank within a particular region. Not just on all
+			```
+		formatString: 0
+		lineageTag: ba0072b7-d3c7-400d-a0f4-1c401fab4495
+
+	measure 'Top City Sales' = ```
+			
+			CALCULATE ( 
+				[Total Sales] , 
+					TOPN ( 5 , 
+						 Regions , 
+							[Total Sales] )
+			)
+			//this only really works with no current context, because that is what it is doing.
+			//if this topn was completed at a lower level of granularity then it could work if placed at the country context level
+			//when in a country and city context it is not relevant
+			```
+		lineageTag: ad184bb8-f30c-48cb-b0dd-ce2473bc6e07
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Top 5 Cities' = ```
+			
+			IF( HASONEVALUE( Regions[City]) ,
+				IF ( 
+				[Regional Sales Rank] <= 5 ,
+					[Total Sales] , 
+						BLANK()
+				)
+			)
+			//this is all you need to build out a dynamic table as BLANK() do not get returned in a table or result
+			//check that city has one value as the subtotal doesn't make any sense
+			```
+		formatString: \$#,0.00;-\$#,0.00;\$#,0.00
+		lineageTag: f408f486-9e0d-4847-8f67-4a1e0d2cbada
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-NZ"}
+
+	measure 'Other Regions' = ```
+			//example of how to create a calculation of 'other'
+			CALCULATE ( 
+				[Total Sales] , 
+					FILTER ( Regions , 
+						RANKX ( ALL ( Regions ) , [Total Sales] ) > 5 )
+			)
+			//you can connect this up to the top ranked things using a disconnected table
+			```
+		lineageTag: 1f6bd6d2-a370-4ffa-9df3-aee1d334fabd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Top 10 Countries' = ```
+			
+			IF( HASONEVALUE( Regions[City]) ,
+				IF ( 
+				[Country Sales Rank] <= 10 ,
+					[Total Sales] , 
+						BLANK()
+				)
+			)
+			//this is all you need to build out a dynamic table as BLANK() do not get returned in a table or result
+			//check that city has one value as the subtotal doesn't make any sense
+			```
+		formatString: \$#,0;-\$#,0;\$#,0
+		lineageTag: 85c4648a-e76e-4b66-b1a5-7a7a2476c81a
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-NZ"}
+
+	partition Ranking-43dc123b-d747-4fbb-b9a7-0c98fd86c832 = m
+		mode: import
+		queryGroup: 'Measure Groups'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", Int64.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

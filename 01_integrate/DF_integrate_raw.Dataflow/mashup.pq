@@ -41,7 +41,7 @@ shared regions = let
 in
   #"Changed column type";
 [BindToDefaultDestination = true]
-shared sales_orders_02 = let
+shared sales_orders_10 = let
   Source = AzureStorage.DataLake("https://hammeradlsg2.dfs.core.windows.net/"),
   #"Filtered rows" = Table.SelectRows(Source, each ([Folder Path] = "https://hammeradlsg2.dfs.core.windows.net/powerbi-data/")),
   Navigation = #"Filtered rows"{[#"Folder Path" = "https://hammeradlsg2.dfs.core.windows.net/powerbi-data/", Name = "sales_orders.csv"]}[Content],

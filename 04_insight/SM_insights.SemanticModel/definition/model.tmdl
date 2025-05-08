@@ -18,7 +18,7 @@ annotation PBI_ProTooling = ["WebModelingEdit"]
 annotation __TEdtr = 1
 
 ref table customers
-ref table sales_orders_15
+ref table sales_orders
 ref table regions
 ref table date
 ref table products

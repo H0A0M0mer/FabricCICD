@@ -16,11 +16,11 @@
           "storedProcedureName": "[dbo].[storedproc1]",
           "storedProcedureParameters": {
             "param1": {
-              "value": "1",
+              "value": "3",
               "type": "Int32"
             },
             "param2": {
-              "value": "2",
+              "value": "4",
               "type": "Int32"
             }
           }

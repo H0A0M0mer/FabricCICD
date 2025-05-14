@@ -1,0 +1,179 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "Stored procedure1",
+        "type": "SqlServerStoredProcedure",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "storedProcedureName": "[dbo].[storedproc1]",
+          "storedProcedureParameters": {
+            "param1": {
+              "value": "1",
+              "type": "Int32"
+            },
+            "param2": {
+              "value": "2",
+              "type": "Int32"
+            }
+          }
+        },
+        "linkedService": {
+          "name": "WH_store_sample",
+          "properties": {
+            "annotations": [],
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "endpoint": "w4d6qkoc6pfudigbnto2elcp6y-kzzewotbs4zunluouz43yg2cmq.datawarehouse.fabric.microsoft.com",
+              "artifactId": "a0c6a917-d579-41ee-942e-695e99f0033c",
+              "workspaceId": "3a4b7256-9761-4633-ae8e-a679bc1b4264"
+            }
+          }
+        }
+      },
+      {
+        "name": "Script1",
+        "type": "Script",
+        "dependsOn": [
+          {
+            "activity": "Stored procedure1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "linkedService": {
+          "name": "WH_store_sample",
+          "properties": {
+            "annotations": [],
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "endpoint": "w4d6qkoc6pfudigbnto2elcp6y-kzzewotbs4zunluouz43yg2cmq.datawarehouse.fabric.microsoft.com",
+              "artifactId": "a0c6a917-d579-41ee-942e-695e99f0033c",
+              "workspaceId": "3a4b7256-9761-4633-ae8e-a679bc1b4264"
+            }
+          }
+        },
+        "typeProperties": {
+          "scripts": [
+            {
+              "type": "Query",
+              "text": {
+                "value": "[WH_store_sample].[dbo].[storedproc1]",
+                "type": "Expression"
+              }
+            }
+          ],
+          "scriptBlockExecutionTimeout": "02:00:00"
+        }
+      },
+      {
+        "name": "Lookup1",
+        "type": "Lookup",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": [
+          {
+            "activity": "Script1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "source": {
+            "type": "DataWarehouseSource",
+            "queryTimeout": "02:00:00",
+            "partitionOption": "None"
+          },
+          "datasetSettings": {
+            "annotations": [],
+            "linkedService": {
+              "name": "WH_store_sample",
+              "properties": {
+                "annotations": [],
+                "type": "DataWarehouse",
+                "typeProperties": {
+                  "endpoint": "w4d6qkoc6pfudigbnto2elcp6y-kzzewotbs4zunluouz43yg2cmq.datawarehouse.fabric.microsoft.com",
+                  "artifactId": "a0c6a917-d579-41ee-942e-695e99f0033c",
+                  "workspaceId": "3a4b7256-9761-4633-ae8e-a679bc1b4264"
+                }
+              }
+            },
+            "type": "DataWarehouseTable",
+            "schema": [],
+            "typeProperties": {}
+          }
+        }
+      },
+      {
+        "name": "Copy data1",
+        "type": "Copy",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": [
+          {
+            "activity": "Lookup1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "sink": {
+            "type": "DataWarehouseSink",
+            "allowCopyCommand": true,
+            "copyCommandSettings": {},
+            "datasetSettings": {
+              "annotations": [],
+              "linkedService": {
+                "name": "WH_store_sample",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "w4d6qkoc6pfudigbnto2elcp6y-kzzewotbs4zunluouz43yg2cmq.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "a0c6a917-d579-41ee-942e-695e99f0033c",
+                    "workspaceId": "3a4b7256-9761-4633-ae8e-a679bc1b4264"
+                  }
+                }
+              },
+              "type": "DataWarehouseTable",
+              "schema": [],
+              "typeProperties": {}
+            }
+          },
+          "enableStaging": false
+        }
+      }
+    ]
+  }
+}

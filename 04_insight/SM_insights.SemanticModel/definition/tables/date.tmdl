@@ -3,8 +3,9 @@ table date
 	sourceLineageTag: [dbo].[date]
 
 	column date
-		dataType: string
-		sourceProviderType: varchar(8000)
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
 		lineageTag: cbe232bb-4822-406c-8027-50a0eb454fe5
 		sourceLineageTag: date
 		summarizeBy: none
@@ -120,8 +121,9 @@ table date
 		annotation SummarizationSetBy = Automatic
 
 	column week_ending
-		dataType: string
-		sourceProviderType: varchar(8000)
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
 		lineageTag: b6ffde53-71fd-4a2c-9cc6-04a04e4d66fc
 		sourceLineageTag: week_ending
 		summarizeBy: none

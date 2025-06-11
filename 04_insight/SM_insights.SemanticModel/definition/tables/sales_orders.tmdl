@@ -13,8 +13,9 @@ table sales_orders
 		annotation SummarizationSetBy = Automatic
 
 	column order_date
-		dataType: string
-		sourceProviderType: varchar(8000)
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
 		lineageTag: e3eed84d-00dc-4644-b63d-0ebd92ff9a44
 		sourceLineageTag: order_date
 		summarizeBy: none
@@ -23,8 +24,9 @@ table sales_orders
 		annotation SummarizationSetBy = Automatic
 
 	column ship_date
-		dataType: string
-		sourceProviderType: varchar(8000)
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
 		lineageTag: 0bf61674-6155-4524-8529-44cbd4e73517
 		sourceLineageTag: ship_date
 		summarizeBy: none
@@ -101,40 +103,48 @@ table sales_orders
 		sourceProviderType: bigint
 		lineageTag: 62f1a3b1-86e1-4bc8-9308-2e9ad821deac
 		sourceLineageTag: order_quantity
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: order_quantity
 
-		annotation SummarizationSetBy = Automatic
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
 
 	column unit_price
-		dataType: string
-		sourceProviderType: varchar(8000)
+		dataType: double
+		sourceProviderType: float
 		lineageTag: bb3226d7-a281-478c-8cf2-8c98e296a86c
 		sourceLineageTag: unit_price
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: unit_price
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column total_unit_cost
-		dataType: string
-		sourceProviderType: varchar(8000)
+		dataType: double
+		sourceProviderType: float
 		lineageTag: f34d9275-9d36-437e-8143-42190b5817a5
 		sourceLineageTag: total_unit_cost
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: total_unit_cost
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column total_revenue
-		dataType: string
-		sourceProviderType: varchar(8000)
+		dataType: double
+		sourceProviderType: float
 		lineageTag: 7a43ab5f-0bd6-454c-85e0-5b3b69144328
 		sourceLineageTag: total_revenue
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: total_revenue
 
 		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	partition sales_orders = entity
 		mode: directLake
@@ -142,8 +152,6 @@ table sales_orders
 			entityName: sales_orders
 			schemaName: dbo
 			expressionSource: DatabaseQuery
-
-	changedProperty = Name
 
 	annotation PBI_ResultType = Table
 

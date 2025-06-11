@@ -1,0 +1,26 @@
+table dim_Machine
+	lineageTag: 6581397d-c3b1-4a49-a39d-c35d4380da75
+
+	column machine_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 17419ac6-4842-40ce-bd5d-f5ffa0815bcb
+		summarizeBy: none
+		sourceColumn: machine_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_Machine = m
+		mode: import
+		queryGroup: 'Machine Data'
+		source =
+				let
+				    Source = Table.Combine({Machine_1, Machine_2}),
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"machine_id"})
+				in
+				    #"Removed Other Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

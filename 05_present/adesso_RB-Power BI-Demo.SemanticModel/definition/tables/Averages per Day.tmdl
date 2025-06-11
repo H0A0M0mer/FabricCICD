@@ -26,3 +26,5 @@ table 'Averages per Day'
 
 	annotation PBI_ResultType = Table
 
+	annotation PBI_NavigationStepName = Navigation
+

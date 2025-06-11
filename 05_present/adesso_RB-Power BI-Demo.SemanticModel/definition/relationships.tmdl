@@ -24,3 +24,7 @@ relationship c3cb079b-931e-4595-a04e-ddde571971ec
 	fromColumn: Sales.'Customer Name Index'
 	toColumn: Customers.'Customer Index'
 
+relationship 07f2d123-a70c-8ced-9ec1-c9dd6448a57e
+	fromColumn: fact_Machine.machine_id
+	toColumn: dim_Machine.machine_id
+

@@ -1,0 +1,46 @@
+table Machine_2
+	lineageTag: 362cae3f-c8cf-4688-b6b7-8256694f0cbd
+
+	column machine_id
+		dataType: int64
+		formatString: 0
+		lineageTag: bb7829a2-74f0-4f5e-a34c-44ae7dc64c67
+		summarizeBy: sum
+		sourceColumn: machine_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_column_3
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b2c0f92-e2eb-4f70-b836-42f3eb3a5f2a
+		summarizeBy: sum
+		sourceColumn: data_column_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_column_4
+		dataType: int64
+		formatString: 0
+		lineageTag: f5c20b63-0511-400c-9d93-d410b05f8fb1
+		summarizeBy: sum
+		sourceColumn: data_column_4
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Machine_2 = m
+		mode: import
+		queryGroup: 'Machine Data'
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\HAMme\Desktop\Rosen\Data\machines-data_demo.xlsx"), null, true),
+				    Machine_2_Sheet = Source{[Item="Machine_2",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Machine_2_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"machine_id", Int64.Type}, {"data_column_3", Int64.Type}, {"data_column_4", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

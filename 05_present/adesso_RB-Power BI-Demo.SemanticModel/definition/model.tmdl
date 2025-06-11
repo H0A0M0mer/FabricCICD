@@ -12,17 +12,21 @@ queryGroup 'Query Functions'
 
 queryGroup 'Data Model'
 
-	annotation PBI_QueryGroupOrder = 1
+	annotation PBI_QueryGroupOrder = 2
 
 queryGroup 'Measure Groups'
 
-	annotation PBI_QueryGroupOrder = 2
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup 'Machine Data'
+
+	annotation PBI_QueryGroupOrder = 3
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.142.1277.0 (25.04)+014fde450f93691fc9537f0758d73d1c5df153ef
+annotation PBIDesktopVersion = 2.143.1204.0 (25.05)+23c84aace645781dd62b8a26eb0418c7e6a84b72
 
-annotation PBI_QueryOrder = ["Dates Query","Products","Regions","Sales","Dates","Key Measures","Cumulative Patterns","Averages per Day","Ranking","Percent of Total","Time Comparison","Customer Measures","Customers"]
+annotation PBI_QueryOrder = ["Dates Query","Products","Regions","Sales","Dates","Key Measures","Cumulative Patterns","Averages per Day","Ranking","Percent of Total","Time Comparison","Customer Measures","Customers","Machine_1","Machine_2","fact_Machine","dim_Machine"]
 
 ref table DateTableTemplate_ecca55fd-816f-45b5-a36d-997291bc9c9a
 ref table Products
@@ -39,6 +43,10 @@ ref table 'Percent of Total'
 ref table 'Time Comparison'
 ref table 'Customer Measures'
 ref table Customers
+ref table Machine_1
+ref table Machine_2
+ref table fact_Machine
+ref table dim_Machine
 
 ref role North
 ref role South

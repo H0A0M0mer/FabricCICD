@@ -1,37 +1,42 @@
 {
   "formatVersion": "202502",
   "computeEngineSettings": {},
-  "name": "DF_integrate",
+  "name": "DF_machine_data",
   "queryGroups": [],
   "documentLocale": "en-US",
   "queriesMetadata": {
-    "customers": {
-      "queryId": "0efc2ec1-1775-4c5d-8eb5-fdd3d63089ec",
-      "queryName": "customers",
+    "January 2019": {
+      "queryId": "66f50cff-ace7-49d1-a686-a1b30ad966d7",
+      "queryName": "January 2019",
       "loadEnabled": false
     },
-    "date": {
-      "queryId": "e557f26b-2229-4ab8-9608-f21c67251580",
-      "queryName": "date",
+    "February 2019": {
+      "queryId": "652904b1-d43b-4980-864a-ffce91d4e588",
+      "queryName": "February 2019",
       "loadEnabled": false
     },
-    "products": {
-      "queryId": "690c1b0b-db0e-43a2-9dcf-1a5cb2418eab",
-      "queryName": "products",
+    "March 2019": {
+      "queryId": "485ba2c5-054c-4109-9cf9-3dcfac3063c6",
+      "queryName": "March 2019",
       "loadEnabled": false
     },
-    "regions": {
-      "queryId": "0e59b66a-0ddb-4ca9-8342-9edcba8a3bb9",
-      "queryName": "regions",
+    "April 2019": {
+      "queryId": "34620625-eee6-4e45-94c2-4e0028f5d56f",
+      "queryName": "April 2019",
       "loadEnabled": false
     },
-    "sales_orders": {
-      "queryId": "1f3a985b-b5a1-47b4-b51e-3569ced2d46a",
-      "queryName": "sales_orders",
+    "May 2019": {
+      "queryId": "98bd54be-0713-4ae5-af90-5104dd493d9b",
+      "queryName": "May 2019",
+      "loadEnabled": false
+    },
+    "June 2019": {
+      "queryId": "9f5e102c-bc84-4c88-a511-f5ce3ed00844",
+      "queryName": "June 2019",
       "loadEnabled": false
     },
     "DefaultDestination": {
-      "queryId": "110dbbc2-c0d3-4233-8039-6990538fc58c",
+      "queryId": "e5989198-5b82-4007-882b-b5e6c9b557d0",
       "queryName": "DefaultDestination",
       "isHidden": true,
       "loadEnabled": false

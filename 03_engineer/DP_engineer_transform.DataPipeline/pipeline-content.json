@@ -13,7 +13,7 @@
           "secureInput": false
         },
         "typeProperties": {
-          "storedProcedureName": "[dbo].[storedproc2]",
+          "storedProcedureName": "[dbo].[storedproc1]",
           "storedProcedureParameters": {
             "param1": {
               "value": "",

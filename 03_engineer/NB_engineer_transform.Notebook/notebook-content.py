@@ -25,22 +25,8 @@
 
 # CELL ********************
 
-# read table from raw lakehouse
-df = spark.sql("SELECT * FROM LH_store_raw.dbo.sales_orders LIMIT 1000")
+df = spark.sql("SELECT * FROM LH_store_transformed.dbo.sales_orders LIMIT 1000")
 display(df)
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-# write table to transformed lakehouse
-sales_orders = "sales_orders"
-df.write.mode("overwrite").option("overwriteSchema", "true").format("delta").saveAsTable(sales_orders)
 
 # METADATA ********************
 

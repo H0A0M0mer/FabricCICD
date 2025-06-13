@@ -1,0 +1,16 @@
+relationship 8c8ffff2-91b5-b8c0-c955-d6fa9d62c8f5
+	fromColumn: sales_orders.customer_name_index
+	toColumn: customers.customer_index
+
+relationship 21bffe79-13ff-06c2-d6e7-e345fba09350
+	fromColumn: sales_orders.delivery_region_index
+	toColumn: regions.index
+
+relationship d97f1d0f-f0f7-2ecf-ce5b-097f09fe335e
+	fromColumn: sales_orders.order_date
+	toColumn: date.date
+
+relationship 8b35b65a-10b5-c453-f621-0572594a2861
+	fromColumn: sales_orders.product_description_index
+	toColumn: products.product_index
+

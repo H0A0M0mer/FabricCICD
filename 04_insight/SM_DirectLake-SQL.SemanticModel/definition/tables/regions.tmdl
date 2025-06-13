@@ -1,0 +1,87 @@
+table regions
+	lineageTag: 9b46b0cd-800c-4510-90e0-86363ab2dcb8
+	sourceLineageTag: [dbo].[regions]
+
+	column index
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 06b95ba4-c58e-4b7c-a707-91b69d51f33f
+		sourceLineageTag: index
+		summarizeBy: none
+		sourceColumn: index
+
+		annotation SummarizationSetBy = Automatic
+
+	column suburb
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 83dd51ea-1406-403d-96d3-6a833aa42ae1
+		sourceLineageTag: suburb
+		summarizeBy: none
+		sourceColumn: suburb
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: fc96c384-4ecb-4864-82c5-7bb0c234a567
+		sourceLineageTag: city
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column postcode
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 533aa746-555f-4111-bc79-772f66da9b69
+		sourceLineageTag: postcode
+		summarizeBy: none
+		sourceColumn: postcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column longitude
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 2d0dabfe-e7f1-433a-adf9-33b6c297a2ee
+		sourceLineageTag: longitude
+		summarizeBy: none
+		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitude
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 2b22022e-83f0-49b8-b3c2-42686310b73d
+		sourceLineageTag: latitude
+		summarizeBy: none
+		sourceColumn: latitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column address
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 522e47ba-356a-4141-9b95-c85d02248089
+		sourceLineageTag: address
+		summarizeBy: none
+		sourceColumn: address
+
+		annotation SummarizationSetBy = Automatic
+
+	partition regions = entity
+		mode: directLake
+		source
+			entityName: regions
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

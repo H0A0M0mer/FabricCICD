@@ -124,7 +124,7 @@
                 "groupId": "9e602918-39f9-4afc-99a5-9bb6c1a8f46b",
                 "channelId": "19:LFQwbNRmfzbqOVKetxx63AjR27NZLWk2QloSvXC4K101@thread.tacv2"
               },
-              "messageBody": "<p>TEST</p>"
+              "messageBody": "<p>Fabric-DP-TEST</p>"
             }
           }
         }
@@ -146,8 +146,8 @@
             "path": "/v2/Mail",
             "body": {
               "To": "Mark.Hartmann@adesso.de",
-              "Subject": "TEST",
-              "Body": "<p>TEST</p>",
+              "Subject": "Fabric-DP-TEST",
+              "Body": "<p>Fabric-DP-TEST</p>",
               "Sensitivity": "",
               "Importance": "Normal"
             }

@@ -1,0 +1,168 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "Wait1",
+        "type": "Wait",
+        "dependsOn": [],
+        "typeProperties": {
+          "waitTimeInSeconds": 1
+        }
+      },
+      {
+        "name": "Dataflow1",
+        "type": "RefreshDataflow",
+        "dependsOn": [
+          {
+            "activity": "Wait1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "dataflowId": "198ec5d9-3748-4998-950b-69ccaf858803",
+          "workspaceId": "e0099af8-4b18-470c-95d4-14bafe07fbc6",
+          "notifyOption": "NoNotification",
+          "dataflowType": "DataflowFabric"
+        }
+      },
+      {
+        "name": "Notebook1",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "Dataflow1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "notebookId": "607309b5-cf28-4264-83cc-a68d246d4cfb",
+          "workspaceId": "bac71373-3e14-4dd2-96fe-4806147833d6"
+        }
+      },
+      {
+        "name": "Semantic model refresh1",
+        "type": "PBISemanticModelRefresh",
+        "dependsOn": [
+          {
+            "activity": "Notebook1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "method": "post",
+          "waitOnCompletion": true,
+          "commitMode": "Transactional",
+          "operationType": "SemanticModelRefresh",
+          "groupId": "771fd076-0ce1-42fd-bbad-7c7603bb499a",
+          "datasetId": "d6bb8394-0264-4657-83a3-eb65f403af5e",
+          "objects": [
+            {
+              "table": "customers"
+            },
+            {
+              "table": "sales_orders"
+            },
+            {
+              "table": "regions"
+            },
+            {
+              "table": "date"
+            },
+            {
+              "table": "products"
+            }
+          ]
+        },
+        "externalReferences": {
+          "connection": "89e3f530-b3c8-499c-abea-814bdc914cd3"
+        }
+      },
+      {
+        "name": "Teams1",
+        "type": "Teams",
+        "dependsOn": [
+          {
+            "activity": "Semantic model refresh1",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "inputs": {
+            "method": "post",
+            "path": "/beta/teams/conversation/message/poster/User/location/Channel",
+            "body": {
+              "recipient": {
+                "groupId": "9e602918-39f9-4afc-99a5-9bb6c1a8f46b",
+                "channelId": "19:LFQwbNRmfzbqOVKetxx63AjR27NZLWk2QloSvXC4K101@thread.tacv2"
+              },
+              "messageBody": "<p>TEST</p>"
+            }
+          }
+        }
+      },
+      {
+        "name": "Office 365 Outlook1",
+        "type": "Office365Outlook",
+        "dependsOn": [
+          {
+            "activity": "Dataflow1",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "inputs": {
+            "method": "post",
+            "path": "/v2/Mail",
+            "body": {
+              "To": "Mark.Hartmann@adesso.de",
+              "Subject": "TEST",
+              "Body": "<p>TEST</p>",
+              "Sensitivity": "",
+              "Importance": "Normal"
+            }
+          }
+        }
+      }
+    ],
+    "logicAppsConnectionPayload": {
+      "id": "/subscriptions/b6644f02-f90f-4d65-b09d-b774fc23cc7a/resourceGroups/connections-d9b1de74-10ef-4d03-a0ab-a2c6d17499f4/providers/Microsoft.Web/connections/2_e91265a3-33ca-4b07-bc1d-de20e41aa0a1_3b50ef80-85c4-4fed-97f8-2b38fdc02e2a",
+      "properties": {
+        "api": {
+          "name": "teams",
+          "id": "/subscriptions/b6644f02-f90f-4d65-b09d-b774fc23cc7a/providers/Microsoft.Web/locations/northeurope/managedApis/teams"
+        }
+      }
+    }
+  }
+}

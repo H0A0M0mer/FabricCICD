@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "MountedDataFactory",
+    "displayName": "ADF-Fabric-adDNA"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "abd7ad7c-353e-9585-419d-a102647b99ff"
+  }
+}

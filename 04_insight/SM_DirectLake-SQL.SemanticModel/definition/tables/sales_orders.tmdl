@@ -1,0 +1,147 @@
+table sales_orders
+	lineageTag: 200dc4bf-4e22-4d48-a4a6-ca7107d1f490
+	sourceLineageTag: [dbo].[sales_orders]
+
+	column order_number
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5d28eb8f-e328-4f6b-bf37-de4206abcd98
+		sourceLineageTag: order_number
+		summarizeBy: none
+		sourceColumn: order_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_date
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: fb5b637e-7038-4aae-95e6-59ab1bda6c40
+		sourceLineageTag: order_date
+		summarizeBy: none
+		sourceColumn: order_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column ship_date
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ab711ce9-dbce-42ae-863f-ef0581e2dbdb
+		sourceLineageTag: ship_date
+		summarizeBy: none
+		sourceColumn: ship_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_name_index
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 9b36954e-a2d4-456e-821f-6bc0e7407c81
+		sourceLineageTag: customer_name_index
+		summarizeBy: none
+		sourceColumn: customer_name_index
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e557a152-4908-421f-9629-b56699ff09db
+		sourceLineageTag: channel
+		summarizeBy: none
+		sourceColumn: channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency_code
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5af49d1a-4bc6-4581-a539-ca494725cce5
+		sourceLineageTag: currency_code
+		summarizeBy: none
+		sourceColumn: currency_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column warehouse_code
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 83c9c2f3-e763-48d3-9a88-bbde158d7a5e
+		sourceLineageTag: warehouse_code
+		summarizeBy: none
+		sourceColumn: warehouse_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_region_index
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: eade2690-654b-494a-bc25-1ca8891855dc
+		sourceLineageTag: delivery_region_index
+		summarizeBy: none
+		sourceColumn: delivery_region_index
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_description_index
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: b7cb167e-d10b-476d-8dc8-8cf0aebc3579
+		sourceLineageTag: product_description_index
+		summarizeBy: none
+		sourceColumn: product_description_index
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_quantity
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 7157f632-8ab8-484f-b171-f864b5e73c13
+		sourceLineageTag: order_quantity
+		summarizeBy: sum
+		sourceColumn: order_quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit_price
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 93d50b24-a280-49c7-b38b-9c2fcea20cd2
+		sourceLineageTag: unit_price
+		summarizeBy: none
+		sourceColumn: unit_price
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_unit_cost
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5d1df896-07ad-4d37-883e-02da921bea22
+		sourceLineageTag: total_unit_cost
+		summarizeBy: none
+		sourceColumn: total_unit_cost
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_revenue
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 755087c2-0283-48e7-8868-0e1816528aef
+		sourceLineageTag: total_revenue
+		summarizeBy: none
+		sourceColumn: total_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+	partition sales_orders = entity
+		mode: directLake
+		source
+			entityName: sales_orders
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,9 @@
+expression DatabaseQuery =
+		let
+		    database = Sql.Database("W4D6QKOC6PFUDIGBNTO2ELCP6Y-RS56TO2PS36UZGFUUV3QZJMBAU.datawarehouse.fabric.microsoft.com", "4fb6c7bd-dc59-4c27-91fb-b65519f13d89")
+		in
+		    database
+	lineageTag: 9f3a3e75-44f2-4e00-b776-9c0136c6956a
+
+	annotation PBI_IncludeFutureArtifacts = False
+

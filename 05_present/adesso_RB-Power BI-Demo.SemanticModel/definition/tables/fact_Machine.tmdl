@@ -1,0 +1,61 @@
+table fact_Machine
+	lineageTag: 7aaa761e-9bf8-4486-aec5-4e8c3017f2fc
+
+	column machine_id
+		dataType: int64
+		formatString: 0
+		lineageTag: aaf17711-ac2e-483e-ad48-65a3fc8620d7
+		summarizeBy: none
+		sourceColumn: machine_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_column_1
+		dataType: int64
+		formatString: 0
+		lineageTag: 5b3adfc0-c3ba-41a2-8671-565fdc9ee8ab
+		summarizeBy: sum
+		sourceColumn: data_column_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_column_2
+		dataType: int64
+		formatString: 0
+		lineageTag: d5c024af-efdc-4449-9f44-4e112ecd7b6c
+		summarizeBy: sum
+		sourceColumn: data_column_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_column_3
+		dataType: int64
+		formatString: 0
+		lineageTag: 1023057e-bcc6-450c-923a-bbf0a2c60d0d
+		summarizeBy: sum
+		sourceColumn: data_column_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_column_4
+		dataType: int64
+		formatString: 0
+		lineageTag: 60d7636c-8857-4d4b-80cf-9b1e58aa03c6
+		summarizeBy: sum
+		sourceColumn: data_column_4
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_Machine = m
+		mode: import
+		queryGroup: 'Machine Data'
+		source =
+				let
+				    Source = Table.Combine({Machine_1, Machine_2})
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

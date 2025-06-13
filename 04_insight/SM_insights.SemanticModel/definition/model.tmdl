@@ -9,19 +9,19 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBIDesktopVersion = 2.143.7657.7 (Main)+be8585b37c10e69f44bb60748e20297aeca9ce9f
+annotation PBIDesktopVersion = 2.145.7692.4 (Main)+9e218fec77c33043950f105df46e999400bc0cc4
 
 annotation PBI_QueryOrder = ["DatabaseQuery"]
 
 annotation PBI_ProTooling = ["WebModelingEdit"]
+
+annotation __TEdtr = 1
 
 ref table customers
 ref table sales_orders
 ref table regions
 ref table date
 ref table products
-
-ref role 2017
 
 ref cultureInfo en-US
 

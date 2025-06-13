@@ -1,0 +1,57 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "DF_machine_data",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "January 2019": {
+      "queryId": "66f50cff-ace7-49d1-a686-a1b30ad966d7",
+      "queryName": "January 2019",
+      "loadEnabled": false
+    },
+    "February 2019": {
+      "queryId": "652904b1-d43b-4980-864a-ffce91d4e588",
+      "queryName": "February 2019",
+      "loadEnabled": false
+    },
+    "March 2019": {
+      "queryId": "485ba2c5-054c-4109-9cf9-3dcfac3063c6",
+      "queryName": "March 2019",
+      "loadEnabled": false
+    },
+    "April 2019": {
+      "queryId": "34620625-eee6-4e45-94c2-4e0028f5d56f",
+      "queryName": "April 2019",
+      "loadEnabled": false
+    },
+    "May 2019": {
+      "queryId": "98bd54be-0713-4ae5-af90-5104dd493d9b",
+      "queryName": "May 2019",
+      "loadEnabled": false
+    },
+    "June 2019": {
+      "queryId": "9f5e102c-bc84-4c88-a511-f5ce3ed00844",
+      "queryName": "June 2019",
+      "loadEnabled": false
+    },
+    "DefaultDestination": {
+      "queryId": "e5989198-5b82-4007-882b-b5e6c9b557d0",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "https://hammeradlsg2.dfs.core.windows.net/",
+      "kind": "AzureDataLakeStorage",
+      "connectionId": "{\"ClusterId\":\"20b2aff4-3d90-4c8a-936a-1171b8a0fa3a\",\"DatasourceId\":\"9ca9db6d-37d8-4070-abf5-63ffc089fbb7\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"20b2aff4-3d90-4c8a-936a-1171b8a0fa3a\",\"DatasourceId\":\"b25a15d6-1b48-41ff-809e-948a75b68435\"}"
+    }
+  ]
+}

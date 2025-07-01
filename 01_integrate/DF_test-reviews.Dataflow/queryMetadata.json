@@ -1,0 +1,32 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "DF_test-reviews",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "test_reviews": {
+      "queryId": "8a73b023-3122-460f-b1b2-4ba8ca81b7da",
+      "queryName": "test_reviews",
+      "loadEnabled": false
+    },
+    "DefaultDestination": {
+      "queryId": "43476bed-e6c0-4213-9356-75f5b0ddd04b",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "https://hammeradlsg2.dfs.core.windows.net/",
+      "kind": "AzureDataLakeStorage",
+      "connectionId": "{\"ClusterId\":\"20b2aff4-3d90-4c8a-936a-1171b8a0fa3a\",\"DatasourceId\":\"9ca9db6d-37d8-4070-abf5-63ffc089fbb7\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"20b2aff4-3d90-4c8a-936a-1171b8a0fa3a\",\"DatasourceId\":\"b25a15d6-1b48-41ff-809e-948a75b68435\"}"
+    }
+  ]
+}

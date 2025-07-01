@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Notebook",
-    "displayName": "AutoML Notebook - 2795",
+    "displayName": "NB_Text-phrases",
     "description": "New notebook"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "47876693-38f9-ab29-4694-307b80194788"
+    "logicalId": "f01278c1-f498-b333-4af4-0faf666b4b62"
   }
 }

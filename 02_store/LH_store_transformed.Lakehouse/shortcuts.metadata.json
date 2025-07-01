@@ -1,1 +1,93 @@
-[]
+[
+  {
+    "name": "test_reviews",
+    "path": "/Tables/dbo_sc",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/dbo/test_reviews",
+        "itemId": "f400c877-1bb8-9732-4b15-872d5e9fcace",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "artifactType": "Lakehouse"
+      }
+    }
+  },
+  {
+    "name": "May 2019",
+    "path": "/Tables/dbo_sc",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/dbo/May 2019",
+        "itemId": "f400c877-1bb8-9732-4b15-872d5e9fcace",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "artifactType": "Lakehouse"
+      }
+    }
+  },
+  {
+    "name": "March 2019",
+    "path": "/Tables/dbo_sc",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/dbo/March 2019",
+        "itemId": "f400c877-1bb8-9732-4b15-872d5e9fcace",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "artifactType": "Lakehouse"
+      }
+    }
+  },
+  {
+    "name": "June 2019",
+    "path": "/Tables/dbo_sc",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/dbo/June 2019",
+        "itemId": "f400c877-1bb8-9732-4b15-872d5e9fcace",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "artifactType": "Lakehouse"
+      }
+    }
+  },
+  {
+    "name": "January 2019",
+    "path": "/Tables/dbo_sc",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/dbo/January 2019",
+        "itemId": "f400c877-1bb8-9732-4b15-872d5e9fcace",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "artifactType": "Lakehouse"
+      }
+    }
+  },
+  {
+    "name": "February 2019",
+    "path": "/Tables/dbo_sc",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/dbo/February 2019",
+        "itemId": "f400c877-1bb8-9732-4b15-872d5e9fcace",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "artifactType": "Lakehouse"
+      }
+    }
+  },
+  {
+    "name": "April 2019",
+    "path": "/Tables/dbo_sc",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/dbo/April 2019",
+        "itemId": "f400c877-1bb8-9732-4b15-872d5e9fcace",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "artifactType": "Lakehouse"
+      }
+    }
+  }
+]

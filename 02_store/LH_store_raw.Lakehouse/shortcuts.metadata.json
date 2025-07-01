@@ -1,5 +1,17 @@
 [
   {
+    "name": "New_Files",
+    "path": "/Files/W2_Scanned_Images",
+    "target": {
+      "type": "AdlsGen2",
+      "adlsGen2": {
+        "connectionId": "9ca9db6d-37d8-4070-abf5-63ffc089fbb7",
+        "location": "https://hammeradlsg2.dfs.core.windows.net",
+        "subpath": "/scanned-images"
+      }
+    }
+  },
+  {
     "name": "SchemaEnforcement",
     "path": "/Files/CSV",
     "target": {
@@ -8,6 +20,18 @@
         "connectionId": "9ca9db6d-37d8-4070-abf5-63ffc089fbb7",
         "location": "https://hammeradlsg2.dfs.core.windows.net",
         "subpath": "/sales-data"
+      }
+    }
+  },
+  {
+    "name": "review-texts",
+    "path": "/Files/CSV",
+    "target": {
+      "type": "AdlsGen2",
+      "adlsGen2": {
+        "connectionId": "9ca9db6d-37d8-4070-abf5-63ffc089fbb7",
+        "location": "https://hammeradlsg2.dfs.core.windows.net",
+        "subpath": "/review-texts"
       }
     }
   },

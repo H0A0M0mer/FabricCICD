@@ -1,0 +1,32 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "DF_table_schema",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "Forms_W2": {
+      "queryId": "cb12a40c-e946-4ffe-8fe1-7a88639a2f16",
+      "queryName": "Forms_W2",
+      "loadEnabled": false
+    },
+    "Forms_W2_DataDestination": {
+      "queryId": "c9507260-ae7d-46c1-a96a-718291bc11ae",
+      "queryName": "Forms_W2_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "https://hammeradlsg2.dfs.core.windows.net/",
+      "kind": "AzureDataLakeStorage",
+      "connectionId": "{\"ClusterId\":\"20b2aff4-3d90-4c8a-936a-1171b8a0fa3a\",\"DatasourceId\":\"9ca9db6d-37d8-4070-abf5-63ffc089fbb7\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"20b2aff4-3d90-4c8a-936a-1171b8a0fa3a\",\"DatasourceId\":\"b25a15d6-1b48-41ff-809e-948a75b68435\"}"
+    }
+  ]
+}

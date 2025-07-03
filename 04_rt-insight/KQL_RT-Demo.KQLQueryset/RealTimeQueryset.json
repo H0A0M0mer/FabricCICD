@@ -1,0 +1,21 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "fd3fbe57-a2f2-4658-90d0-c9ea5e901018",
+        "clusterUri": "https://trd-vggvu9b2akc56pugmf.z0.kusto.fabric.microsoft.com",
+        "type": "AzureDataExplorer",
+        "databaseName": "EH_store_demo"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "0b3ec949-428b-4bd5-bc46-e168f9aa9520",
+        "content": "//***********************************************************************************************************\n// Here are two articles to help you get started with KQL:\n// KQL reference guide - https://aka.ms/KQLguide\n// SQL - KQL conversions - https://aka.ms/sqlcheatsheet\n//***********************************************************************************************************\n\n// Use \"take\" to view a sample number of records in the table and check the data.\nBikeDemo\n| take 100\n\n// See how many records are in the table.\nBikeDemo\n| count\n\n// This query returns the number of ingestions per hour in the given table.\nBikeDemo\n| summarize IngestionCount = count() by bin(ingestion_time(), 1h)\n\nBikeDemo\n| where Neighbourhood == \"Chelsea\"\n| project current_time, No_Bikes\n| render timechart\n\nExplain\nSelect * from BikeDemo\nwhere Neighbourhood = 'Chelsea'\n\nBikeDemo\n| summarize arg_max(current_time, No_Bikes) by BikepointID\n| sort by BikepointID\n| render columnchart with (ycolumns=No_Bikes, xcolumn=BikepointID)\n\nBikeDemo\n| where Neighbourhood == \"Chelsea\"",
+        "title": "",
+        "dataSourceId": "fd3fbe57-a2f2-4658-90d0-c9ea5e901018"
+      }
+    ]
+  }
+}
